@@ -1,5 +1,4 @@
 // activates dragging and snapping to droppable elements
-$("#draggable").draggable({
-  snap: "#droppable",
-  snapMode: "inner"
+$(".draggable").draggable({
+  snap: ".droppable"
 });
