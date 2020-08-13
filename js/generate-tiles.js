@@ -1,5 +1,5 @@
-{"pieces": [
-	{"letter":"A", "value":1,  "amount":9,},
+var tiles = [
+	{"letter":"A", "value":1,  "amount":9},
 	{"letter":"B", "value":3,  "amount":2},
 	{"letter":"C", "value":3,  "amount":2},
 	{"letter":"D", "value":2,  "amount":4},
@@ -26,6 +26,21 @@
 	{"letter":"Y", "value":4,  "amount":2},
 	{"letter":"Z", "value":10, "amount":1},
 	{"letter":"_", "value":0,  "amount":2}
-],
-"creator":"Ramon Meza"
+];
+
+// creates a deck of tiles based on tiles[]
+var currentTiles = [];
+for (i in tiles) {
+  for (var j = 0; j < tiles[i].amount; j++) {
+    currentTiles.push(tiles[i].letter);
+  }
+}
+
+// creates a random hand of 7 tiles based on currentTiles[]
+var myHand = [];
+for (var i = 0; i < 7; i++) {
+  var rand = Math.floor(Math.random() * currentTiles.length);
+  var myTile = currentTiles[rand];
+  myHand.push(myTile);
+  currentTiles.splice(rand, 1);
 }
