@@ -1,11 +1,12 @@
-#tiles {
+#tiles, #drop-area {
   list-style-type: none;
   margin: 0px;
   padding: 0px;
 }
 
-#tiles li {
+#tiles li, #drop-area li {
   display: inline-block;
+  margin: 10px;
 }
 
 .draggable {
