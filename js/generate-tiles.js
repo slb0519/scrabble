@@ -45,13 +45,29 @@ for (var i = 0; i < 7; i++) {
   currentTiles.splice(rand, 1);
 }
 
-var tilesList = $("#tiles");
-var newTile = document.createElement("li");
-var newDiv = document.createElement("div");
-newDiv.setAttribute("class", "draggable");
-newTile.appendChild(newDiv);
-var newImage = document.createElement("img");
-var imgPath = "images/tiles/Scrabble_Tile_" + myHand[0] +".jpg";
-newDiv.appendChild(newImage);
-newImage.setAttribute("src", imgPath);
-tilesList.append(newTile);
+// creates tile objects and places them in html list
+for (var i = 0; i < 7; i++) {
+	// grab tiles ul
+	var tilesList = $("#tiles");
+
+	// create an li
+	var newTile = document.createElement("li");
+
+	// create and attach a draggable div to li
+	var newDiv = document.createElement("div");
+	newDiv.setAttribute("class", "draggable");
+	newTile.appendChild(newDiv);
+
+	// create and attach an img with correct src to div
+	var newImage = document.createElement("img");
+	var imgPath = "images/tiles/Scrabble_Tile_" + myHand[i] +".jpg";
+		// correct img src if blank tile
+		if (myHand[i] == "_") {
+			imgPath = "images/tiles/Scrabble_Tile_Blank.jpg"
+		}
+	newImage.setAttribute("src", imgPath);
+	newDiv.appendChild(newImage);
+
+	// append newly created li to tiles ul
+	tilesList.append(newTile);
+}
