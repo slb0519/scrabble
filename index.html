@@ -24,21 +24,35 @@
       </div>
     </li>
     <li>
-      <div id="draggable">
+      <div class="draggable">
         <img src="images\tiles\Scrabble_Tile_B.jpg" alt="B">
       </div>
     </li>
     <li>
-      <div id="draggable">
+      <div class="draggable">
         <img src="images\tiles\Scrabble_Tile_C.jpg" alt="C">
       </div>
     </li>
   </ul>
 
-
-  <div class="droppable">
-    <p>Drop here</p>
-  </div>
+  <!-- drop area -->
+  <ul id="drop-area">
+    <li>
+      <div class="droppable">
+        <p>1</p>
+      </div>
+    </li>
+    <li>
+      <div class="droppable">
+        <p>2</p>
+      </div>
+    </li>
+    <li>
+      <div class="droppable">
+        <p>3</p>
+      </div>
+    </li>
+  </ul>
 
   <!-- jQuery and jQuery UI -->
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -46,7 +60,7 @@
 
   <!-- creates hand -->
   <script src="js/generate-tiles.js"></script>
-  
+
   <!-- activates draggable object -->
   <script src="js/draggable.js"></script>
 

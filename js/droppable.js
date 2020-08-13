@@ -1,5 +1,6 @@
 $(".droppable").droppable({
   drop: function(event, ui) {
-    console.log("Dropped");
+    var info = ui.draggable.html();
+    console.log(info);
   }
 });
