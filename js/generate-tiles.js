@@ -68,6 +68,22 @@ for (var i = 0; i < 7; i++) {
 	newImage.setAttribute("src", imgPath);
 	newDiv.appendChild(newImage);
 
+	// create and attach a letter div to draggable div
+	var newDivLetter = document.createElement("div");
+  newDivLetter.innerHTML = myHand[i];
+  newDivLetter.setAttribute("class", "letter");
+  newDiv.appendChild(newDivLetter);
+
+	// create and attach a value div to draggable div
+	var newDivValue = document.createElement("div");
+	var index = myHand[i].charCodeAt(0) - 65;
+	if (myHand[i] == "_") {
+		index = 26;
+	}
+  newDivValue.innerHTML = tiles[index].value;
+  newDivValue.setAttribute("class", "value");
+  newDiv.appendChild(newDivValue);
+
 	// append newly created li to tiles ul
 	tilesList.append(newTile);
 }

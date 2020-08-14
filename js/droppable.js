@@ -1,6 +1,8 @@
 $(".droppable").droppable({
   drop: function(event, ui) {
-    var info = ui.draggable.html();
-    console.log(info);
+    $(this).find("div.tile").html(ui.draggable.find("div.letter").html());
+    $(this).find("div.value").html(ui.draggable.find("div.value").html());
+
+    $(this).droppable("disable");
   }
 });
