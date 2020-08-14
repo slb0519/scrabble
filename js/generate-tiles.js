@@ -1,3 +1,5 @@
+// email: sean_boullianne@student.uml.edu
+
 var tiles = [
 	{"letter":"A", "value":1,  "amount":9},
 	{"letter":"B", "value":3,  "amount":2},
@@ -29,61 +31,81 @@ var tiles = [
 ];
 
 // creates a deck of tiles based on tiles[]
-var currentTiles = [];
+var currentDeck = [];
 for (i in tiles) {
   for (var j = 0; j < tiles[i].amount; j++) {
-    currentTiles.push(tiles[i].letter);
+    currentDeck.push(tiles[i].letter);
   }
 }
 
-// creates a random hand of 7 tiles based on currentTiles[]
-var myHand = [];
-for (var i = 0; i < 7; i++) {
-  var rand = Math.floor(Math.random() * currentTiles.length);
-  var myTile = currentTiles[rand];
-  myHand.push(myTile);
-  currentTiles.splice(rand, 1);
+
+
+// creates a random hand of 7 tiles based on currentDeck[]
+var currentHand = [];
+
+function deal() {
+
+	while (currentHand.length !== 7) {
+		if (currentDeck.length !== 0) {
+		  var rand = Math.floor(Math.random() * currentDeck.length);
+		  var myTile = currentDeck[rand];
+		  currentHand.push(myTile);
+		  currentDeck.splice(rand, 1);
+		}
+		else {
+			alert("Game Over! Deck is empty")
+			break;
+		}
+	}
+
+	printHand();
+	makeDraggable();
 }
 
-// creates tile objects and places them in html list
-for (var i = 0; i < 7; i++) {
-	// grab tiles ul
-	var tilesList = $("#tiles");
+function printHand() {
+	// clear current hand
+	$("#tiles").empty();
 
-	// create an li
-	var newTile = document.createElement("li");
+	// creates tile objects and places them in html list
+	for (var i = 0; i < currentHand.length; i++) {
+		// grab tiles ul
+		var tilesList = $("#tiles");
 
-	// create and attach a draggable div to li
-	var newDiv = document.createElement("div");
-	newDiv.setAttribute("class", "draggable");
-	newTile.appendChild(newDiv);
+		// create an li
+		var newTile = document.createElement("li");
 
-	// create and attach an img with correct src to div
-	var newImage = document.createElement("img");
-	var imgPath = "images/tiles/Scrabble_Tile_" + myHand[i] +".jpg";
-		// correct img src if blank tile
-		if (myHand[i] == "_") {
-			imgPath = "images/tiles/Scrabble_Tile_Blank.jpg"
+		// create and attach a draggable div to li
+		var newDiv = document.createElement("div");
+		newDiv.setAttribute("class", "draggable");
+		newTile.appendChild(newDiv);
+
+		// create and attach an img with correct src to div
+		var newImage = document.createElement("img");
+		var imgPath = "images/tiles/Scrabble_Tile_" + currentHand[i] +".jpg";
+			// correct img src if blank tile
+			if (currentHand[i] == "_") {
+				imgPath = "images/tiles/Scrabble_Tile_Blank.jpg"
+			}
+		newImage.setAttribute("src", imgPath);
+		newDiv.appendChild(newImage);
+
+		// create and attach a letter div to draggable div
+		var newDivLetter = document.createElement("div");
+	  newDivLetter.innerHTML = currentHand[i];
+	  newDivLetter.setAttribute("class", "letter");
+	  newDiv.appendChild(newDivLetter);
+
+		// create and attach a value div to draggable div
+		var newDivValue = document.createElement("div");
+		var index = currentHand[i].charCodeAt(0) - 65;
+		if (currentHand[i] == "_") {
+			index = 26;
 		}
-	newImage.setAttribute("src", imgPath);
-	newDiv.appendChild(newImage);
+	  newDivValue.innerHTML = tiles[index].value;
+	  newDivValue.setAttribute("class", "value");
+	  newDiv.appendChild(newDivValue);
 
-	// create and attach a letter div to draggable div
-	var newDivLetter = document.createElement("div");
-  newDivLetter.innerHTML = myHand[i];
-  newDivLetter.setAttribute("class", "letter");
-  newDiv.appendChild(newDivLetter);
-
-	// create and attach a value div to draggable div
-	var newDivValue = document.createElement("div");
-	var index = myHand[i].charCodeAt(0) - 65;
-	if (myHand[i] == "_") {
-		index = 26;
+		// append newly created li to tiles ul
+		tilesList.append(newTile);
 	}
-  newDivValue.innerHTML = tiles[index].value;
-  newDivValue.setAttribute("class", "value");
-  newDiv.appendChild(newDivValue);
-
-	// append newly created li to tiles ul
-	tilesList.append(newTile);
 }

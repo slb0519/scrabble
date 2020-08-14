@@ -1,3 +1,7 @@
+<!--
+email: sean_boullianne@student.uml.edu
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -29,10 +33,12 @@
   </ul>
 
   <!-- button to score the board -->
-  <button type="button"onclick="score()">Get your Score</button>
+  <button type="button" onclick="score()">Get your Score</button>
 
   <h2 id="scoreHdr">Your Score</h2>
   <p id=score></p>
+
+  <button type="button" onclick="newRound()">Next Round</button>
 
   <!-- jQuery and jQuery UI -->
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -50,12 +56,11 @@
   <!-- activates droppable object -->
   <script src="js/droppable.js"></script>
 
+  <!-- starts a new round -->
+  <script src="js/newRound.js"></script>
+
   <!-- scores the current board -->
   <script src="js/score.js"></script>
-
-
-
-
 
 </body>
 </html>
