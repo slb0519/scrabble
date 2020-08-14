@@ -57,7 +57,6 @@ function deal() {
 			break;
 		}
 	}
-
 	printHand();
 	makeDraggable();
 }
